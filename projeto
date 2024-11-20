@@ -1,0 +1,127 @@
+TechCaverna
+Este é um projeto de sistema de gerenciamento e apresentação de produtos desenvolvido como parte de uma atividade acadêmica. O projeto utiliza um backend baseado em Flask e um frontend em React, configurado para servir ambos os serviços em um servidor com Nginx e Gunicorn, garantindo alta performance e escalabilidade.  
+
+Visão Geral do Projeto:  
+
+O TechCaverna é um sistema web que permite gerenciar e apresentar produtos. O backend expõe uma API REST para criar, ler, atualizar e deletar produtos no banco de dados. O frontend consome essa API para exibir os dados de forma amigável ao usuário.  
+
+ Principais Funcionalidades  
+
+- Backend em Flask com suporte a JWT para autenticação.  
+- Frontend em React com Axios para consumo de APIs.  
+- Deploy em servidor Amazon EC2 usando Nginx e Gunicorn.  
+- Banco de dados MariaDB MySQL para armazenamento de dados.  
+- Certificado SSL configurado com Let's Encrypt para segurança.  
+
+---
+
+Estrutura do Projeto
+
+A organização do projeto segue a seguinte estrutura:  
+
+plaintext  
+projeto/  
+├── backend/               Código do backend (Flask)  
+│   ├── app.py             Principal arquivo do backend  
+│   ├── models.py          Modelos do banco de dados  
+│   └── requirements.txt   Dependências do backend  
+├── frontend/              Código do frontend (React)  
+│   ├── src/               Código-fonte do React  
+│   ├── package.json       Dependências do frontend  
+│   └── build/             Build estático gerado pelo React  
+├── nginx/                 Configuração do servidor Nginx  
+│   └── nginx.conf         Configuração personalizada para o domínio  
+
+
+---
+
+ Tecnologias Utilizadas  
+
+1. Frontend: React.js com Axios.  
+2. Backend: Flask (Python) com SQLAlchemy e JWT.  
+3. Banco de Dados: MySQL.  
+4. Servidor de Aplicação: Gunicorn.  
+5. Servidor Web: Nginx com configuração SSL.  
+6. Ambiente: AWS EC2.  
+
+---
+
+ Configuração do Ambiente  
+
+ Requisitos  
+Certifique-se de que as seguintes dependências estão instaladas:  
+- Python 3.6+  
+- Node.js  
+- MySQL  
+
+ Passos de Configuração  
+
+1. Configuração do Backend  
+   - Instale as dependências:  
+     bash  
+     pip install -r backend/requirements.txt  
+     
+   - Configure o banco de dados no arquivo `app.py`:  
+     python  
+     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://usuario:senha@localhost/techcaverna_shop'  
+     
+
+2. Configuração do Frontend  
+   - Instale as dependências:  
+     bash  
+     cd frontend/  
+     npm install  
+     
+   - Gere o build para deploy:  
+     bash  
+     npm run build  
+     
+
+3. Deploy no Servidor  
+   - Copie os arquivos do frontend gerados em `build/` para o diretório `/var/www/techcaverna-frontend/`.  
+   - Certifique-se de que o Nginx e o Gunicorn estão configurados corretamente.
+
+---
+
+ Como Rodar o Projeto  
+
+ Executando Localmente  
+
+- Backend  
+  bash  
+  cd backend/  
+  flask run --host=0.0.0.0 --port=5001  
+  
+
+- Frontend  
+  bash  
+  cd frontend/  
+  npm start  
+  
+
+ Deploy no Servidor  
+
+- Reinicie os serviços configurados:  
+  bash  
+  sudo systemctl restart nginx  
+  sudo systemctl restart gunicorn  
+  
+
+- Acesse o projeto:  
+  - Frontend: `https://techcaverna.shop/app`  
+  - Backend API: `https://techcaverna.shop/api`  
+
+---
+
+ Endpoints Importantes  
+
+- GET /api/products: Retorna a lista de produtos.  
+- POST /api/add-product: Adiciona um novo produto (JSON).  
+- POST /api/register: Registra novos usuários.  
+- POST /api/login: Gera um token JWT para autenticação.  
+
+---
+
+ Considerações Finais  
+
+O projeto TechCaverna foi desenvolvido para demonstrar habilidades em desenvolvimento web e deploy em 
